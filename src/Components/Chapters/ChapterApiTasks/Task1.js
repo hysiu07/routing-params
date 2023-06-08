@@ -3,7 +3,6 @@ import User from './User';
 import UsersList from './UsersList';
 
 function Task1() {
-	
 	return (
 		<div>
 			<UsersList />

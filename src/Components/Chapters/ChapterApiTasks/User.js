@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import UserDetails from './UserDetails';
+import 'react-placeholder/lib/reactPlaceholder.css';
 
 function User({
 	name,
@@ -8,12 +10,27 @@ function User({
 	email,
 	registered,
 	img,
+	country,
+	positionX,
+	positionY,
 }) {
+	console.log(positionX);
+	const moreInfo = {
+		address: {
+			city: addressCity,
+			street: addressStreet,
+			country: country,
+		},
+		emailUser: email,
+	};
+
 	let dateApi = new Date(registered);
 	let dayWeek = '';
 	let day = dateApi.getDate();
 	let month = '';
 	let year = dateApi.getFullYear();
+
+	const [showDetails, setShowDetails] = useState(false);
 
 	if (dateApi.getDay() === 0) {
 		dayWeek = 'Monday';
@@ -61,22 +78,27 @@ function User({
 		right: 20,
 		top: 20,
 		backgroundImage: `url(${img})`,
-		width: 120,
-		height: 120,
+		width: 100,
+		height: 100,
 		borderRadius: 50,
 	};
 	return (
 		<div className='user'>
+			{/* <p>ID: {params}</p> */}
 			<p>Name: {name}</p>
 			<p>Lastname: {lastName}</p>
-			<p className='address'>
-				Address:
-				<span>City: {addressCity}</span>
-				<span>Street: {addressStreet}</span>
-			</p>
-			<p>Email: {email}</p>
+
 			<p>Registration: {`${dayWeek} ${day} ${month} ${year}`} </p>
 			<div className='user-img' style={styles}></div>
+			<button
+				onClick={() => {
+					setShowDetails(!showDetails);
+				}}
+			>
+				More Details
+			</button>
+
+			{showDetails && <UserDetails moreInfo={moreInfo} />}
 		</div>
 	);
 }
