@@ -17,6 +17,12 @@ function Nav() {
 				<li>
 					<Link to={'/footer'}>Footer</Link>
 				</li>
+				<li>
+					<Link to={'/movies'}>Movies</Link>
+				</li>
+				<li>
+					<Link to={'/chapterApi'}>Komunikacja Z REST API</Link>
+				</li>
 			</ul>
 		</div>
 	);
