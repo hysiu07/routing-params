@@ -98,7 +98,13 @@ function User({
 				More Details
 			</button>
 
-			{showDetails && <UserDetails moreInfo={moreInfo} />}
+			{showDetails && (
+				<UserDetails
+					moreInfo={moreInfo}
+					positionX={positionX}
+					positionY={positionY}
+				/>
+			)}
 		</div>
 	);
 }

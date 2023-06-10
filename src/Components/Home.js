@@ -1,13 +1,11 @@
 import React from 'react';
+import { Chapter7, Chapter7_2 } from './Chapters';
 
 function Home() {
 	return (
 		<div>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores aperiam
-				obcaecati impedit totam nihil. Odit placeat non perferendis minus
-				pariatur?
-			</p>
+			<Chapter7 />
+			<Chapter7_2 />
 		</div>
 	);
 }

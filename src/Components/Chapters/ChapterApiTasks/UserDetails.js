@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-function UserDetails({ moreInfo }) {
+function UserDetails({ moreInfo, positionX, positionY }) {
 	const [ready, setReady] = useState(false);
 
 	let DefaultIcon = L.icon({
@@ -16,13 +16,16 @@ function UserDetails({ moreInfo }) {
 	});
 
 	L.Marker.prototype.options.icon = DefaultIcon;
-	
-	const position = [51.45102, 0.01266];
+
+	const position = [positionX *1, positionY*1];
+
+	console.log(position);
 	useEffect(() => {
 		setTimeout(() => {
 			setReady(true);
 		}, 3000);
 	}, []);
+
 	return (
 		<div className='user-details'>
 			<ReactPlaceholder rows={8} ready={ready}>
@@ -37,15 +40,15 @@ function UserDetails({ moreInfo }) {
 				<div className='map'>
 					<MapContainer
 						className='leaflet'
-						center={[51.505, -0.09]}
+						center={position}
 						zoom={13}
-						scrollWheelZoom={false}
+						scrollWheelZoom={true}
 					>
 						<TileLayer
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 							url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 						/>
-						<Marker position={[51.505, -0.09]}>
+						<Marker position={position}>
 							<Popup>I'm here!</Popup>
 						</Marker>
 					</MapContainer>
